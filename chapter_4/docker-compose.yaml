@@ -1,0 +1,41 @@
+# Configuration sheet for a mix of docker files or individual containers (spec sheets to get all our containers running)
+
+# Indentation is very important for this file
+
+# build is that they will use the dockerfile we created to build, so the location of the docker file is in the same directory as this file, hence we put a period
+# environment variables is like the env file
+# NODE_ENV specifies which environment its gonna be run on (development, staging, production)
+# ports is for port mapping where we match an external port to an internal port (external:internal)
+# volumes create a database (history record) of our server so that we can save the previous state of the container so when we shut down the computer, we can revisit the previous state later 
+
+version: '3'
+services:
+  app:
+    build: .
+    container_name: todo-app
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/todoapp
+      - JWT_SECRET=your_jwt_secret_here
+      - NODE_ENV=development
+      - PORT=5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:13-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: todoapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:

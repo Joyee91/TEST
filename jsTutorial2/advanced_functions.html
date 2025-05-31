@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Functions</title>
+</head>
+<body>
+    <script>
+        // creating functions like this is not only easy to read, but also allow hoisting (means can call it before the function code, so dont have to worry about where we call the function)
+        greeting()
+        function greeting() {
+            console.log('hello');
+        }
+        greeting();
+
+        // hoisting doesnt work if we save a function as a variable
+        const function1 = function() {
+            console.log('hello2');
+        };
+    </script>
+</body>
+</html>

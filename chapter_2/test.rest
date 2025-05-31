@@ -1,0 +1,18 @@
+### emulates the process of the browser sending network requests (Website requests and API requests)
+
+### TEST GET / WEBSITE
+GET http://localhost:8383
+
+### TEST GET DATA ENDPOINT
+GET http://localhost:8383/api/data
+
+### TEST POST DATA ENDPOINT
+POST http://localhost:8383/api/data
+Content-Type: application/json
+
+{
+    "name": "poop2"
+}
+
+### TEST DELETE ENDPOINT
+DELETE http://localhost:8383/api/data

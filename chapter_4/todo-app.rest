@@ -1,0 +1,46 @@
+### GET /
+GET http://localhost:5000
+
+### Register a user auth/register
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "username": "poop@gmail.com",
+    "password": "123123"
+}
+
+### Login a user auth/login
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username": "poop@gmail.com",
+    "password": "123123"
+}
+
+### Fetch all todos GET /todos (protected)
+GET http://localhost:5000/todos
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ4Mjc1NDY1LCJleHAiOjE3NDgzNjE4NjV9.Ji-Mptft5VjsfEzx9mKZ21xHzZkt4jIHnfccvNN7IZ4
+
+### Create a new todo POST /
+POST http://localhost:5000/todos
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ4Mjc1NDY1LCJleHAiOjE3NDgzNjE4NjV9.Ji-Mptft5VjsfEzx9mKZ21xHzZkt4jIHnfccvNN7IZ4
+
+{
+    "task": "Finish coding the project"
+}
+
+### Update an existing todo PUT/todos/:id (protected)
+PUT http://localhost:5000/todos/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ4Mjc1NDY1LCJleHAiOjE3NDgzNjE4NjV9.Ji-Mptft5VjsfEzx9mKZ21xHzZkt4jIHnfccvNN7IZ4
+
+{
+    "completed": 1
+}
+
+### Delete an existing todo DELETE/todos/:id (protected) this example is a hard delete which normally companies wont do (they will do soft delete)
+DELETE http://localhost:5000/todos/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ4Mjc1NDY1LCJleHAiOjE3NDgzNjE4NjV9.Ji-Mptft5VjsfEzx9mKZ21xHzZkt4jIHnfccvNN7IZ4
