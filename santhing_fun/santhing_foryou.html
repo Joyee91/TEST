@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santhing For You <3</title>
+</head>
+<body>
+    <script>
+        
+
+        function spawnSans(event) {
+            // getting position
+            let xPos = event.clientX;
+            let yPos = event.clientY;
+            console.log("xpos: ", xPos, "ypos: ", yPos);
+
+            // getting image
+            let luckySan = Math.floor(Math.random()*17) + 1;
+
+            // spawn san
+            let sanImg = document.createElement("img");
+            let imgPath = 'sanpics_removedbg/' + luckySan + '.png';
+            sanImg.src = imgPath;
+            document.body.appendChild(sanImg);
+            sanImg.id = xPos.toString() + yPos.toString();
+            let sanId = sanImg.id
+            console.log("sanid: ", sanId);
+
+            let finalxPos = xPos - sanImg.width/2;
+            let finalyPos = yPos - sanImg.height/2;
+            
+            let san = document.getElementById(sanId);
+            san.style.position = "absolute";
+            san.style.left = finalxPos + "px";
+            san.style.top = finalyPos + "px";
+            san.style.width = sanImg.width - 20 + "px";
+            san.style.height = sanImg.height - 20 + "px";
+            // san.style.width = "10px";
+            // san.style.height = "10px";
+            // san.style.backgroundColor = "blue";
+
+            // TODO: make image spawn in the middle of cursor
+
+            // TODO: make it random sizes
+
+            // TODO: make it move randomly (direction n distance)
+
+            // TODO: make it not change the size/placement of other images, and fix the viewport smax width and height
+
+        }
+        document.addEventListener("click", spawnSans);
+    </script>
+    
+</body>
+</html>

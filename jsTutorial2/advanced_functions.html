@@ -18,6 +18,24 @@
         const function1 = function() {
             console.log('hello2');
         };
+
+        // can also create a method (a function saved inside an object)
+        const object1 = {
+            num: 2,
+            fun: function greeting() {
+                console.log('hello3');
+            }
+        };
+        object1.fun();
+
+        // can also pass a function into another function (as a param)
+        function run(param) {
+            param();
+        }
+        // passing in a callback function
+        run(function() {
+            console.log('hello4');
+        });
     </script>
 </body>
 </html>
