@@ -30,14 +30,15 @@
 
     <div id="Text">
         <h1>I Made SanThing For You</h1>
+        <h2>Ensure your audio is on !!</h2>
         <h2>Click anywhere and when you are done, press "Enter"</h2>
         <h2>Enjoy :></h2>
     </div>
-    
+
+    <audio id="bgm" autoplay loop></audio>
 
     <script>
         function spawnSans(event) {
-
             const text = document.getElementById("Text");
             text.style.display = "none";
 
@@ -76,13 +77,36 @@
 
         // move the images around the page after clicking enter
         function moveSans() {
-            
-        }
+            document.querySelectorAll("img").forEach(img => {
+                
+                // remove "px" in the value first to get the number
+                const initialLeft = parseInt(img.style.left.slice(0, -1));
+                const initialTop = parseInt(img.style.top.slice(0, -1));
+                const maxX = window.innerWidth - img.clientWidth;
+                const maxY = window.innerHeight - img.clientHeight;
 
+                // move in random direction (but not over the edge)
+                const movingOptions = [
+                    () => { if (initialLeft > 0) img.style.left =  initialLeft - 10 + "px"},
+                    () => { if (initialLeft < maxX) img.style.left =  initialLeft + 10 + "px"},
+                    () => { if (initialTop > 0) img.style.top =  initialTop - 10 + "px"},
+                    () => { if (initialTop < maxY) img.style.top =  initialTop + 10 + "px"}
+                ]
+
+                const randomMove = Math.floor(Math.random() * movingOptions.length);
+                movingOptions[randomMove]();
+                
+            });
+            requestAnimationFrame(moveSans);
+        }
 
         document.addEventListener("click", spawnSans);
         document.addEventListener("keydown", function(event){
             if (event.key === "Enter"){
+                // cue bgm
+                document.getElementById('bgm').innerHTML = '<source src="wiggle.mp3" type="audio/mpeg">';
+
+                // cue dance
                 moveSans();
             }
         });
