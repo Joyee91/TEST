@@ -30,7 +30,7 @@
 
     <div id="Text">
         <h1>I Made SanThing For You</h1>
-        <h2>Ensure your audio is on !!</h2>
+        <h2>Make sure that your Audio is ON !!</h2>
         <h2>Click anywhere and when you are done, press "Enter"</h2>
         <h2>Enjoy :></h2>
     </div>
@@ -52,7 +52,7 @@
 
             // spawn san
             const sanImg = document.createElement("img");
-            const imgPath = 'sanpics_removedbg/' + luckySan + '.png';
+            const imgPath = 'santhing_you_dont_have_to_know/sanpics_removedbg/' + luckySan + '.png';
             sanImg.src = imgPath;
             
             sanImg.onload = function(event){
@@ -69,7 +69,7 @@
 
             // add audio
             const luckySanVoice = Math.floor(Math.random()*9) + 1;
-            const sanVoicePath = 'sanvoices/' + luckySanVoice + '.mp3';
+            const sanVoicePath = 'santhing_you_dont_have_to_know/sanvoices/' + luckySanVoice + '.mp3';
             const theVoice = new Audio(sanVoicePath);
             theVoice.play();
 
@@ -104,7 +104,7 @@
         document.addEventListener("keydown", function(event){
             if (event.key === "Enter"){
                 // cue bgm
-                document.getElementById('bgm').innerHTML = '<source src="wiggle.mp3" type="audio/mpeg">';
+                document.getElementById('bgm').innerHTML = '<source src="santhing_you_dont_have_to_know/wiggle.mp3" type="audio/mpeg">';
 
                 // cue dance
                 moveSans();
