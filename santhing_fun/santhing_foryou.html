@@ -5,51 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Santhing For You <3</title>
 </head>
-<body>
-    <script>
-        
 
+<style>
+    body {
+        max-width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 80px;
+        padding-top: 10%;
+    }
+
+    h2 {
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+    }
+</style>
+
+<body>
+
+    <div id="Text">
+        <h1>I Made SanThing For You</h1>
+        <h2>Click anywhere and when you are done, press "Enter"</h2>
+        <h2>Enjoy :></h2>
+    </div>
+    
+
+    <script>
         function spawnSans(event) {
+
+            const text = document.getElementById("Text");
+            text.style.display = "none";
+
             // getting position
-            let xPos = event.clientX;
-            let yPos = event.clientY;
+            const xPos = event.clientX;
+            const yPos = event.clientY;
             console.log("xpos: ", xPos, "ypos: ", yPos);
 
             // getting image
-            let luckySan = Math.floor(Math.random()*17) + 1;
+            const luckySan = Math.floor(Math.random()*21) + 1;
 
             // spawn san
-            let sanImg = document.createElement("img");
-            let imgPath = 'sanpics_removedbg/' + luckySan + '.png';
+            const sanImg = document.createElement("img");
+            const imgPath = 'sanpics_removedbg/' + luckySan + '.png';
             sanImg.src = imgPath;
-            document.body.appendChild(sanImg);
-            sanImg.id = xPos.toString() + yPos.toString();
-            let sanId = sanImg.id
-            console.log("sanid: ", sanId);
-
-            let finalxPos = xPos - sanImg.width/2;
-            let finalyPos = yPos - sanImg.height/2;
             
-            let san = document.getElementById(sanId);
-            san.style.position = "absolute";
-            san.style.left = finalxPos + "px";
-            san.style.top = finalyPos + "px";
-            san.style.width = sanImg.width - 20 + "px";
-            san.style.height = sanImg.height - 20 + "px";
-            // san.style.width = "10px";
-            // san.style.height = "10px";
-            // san.style.backgroundColor = "blue";
+            sanImg.onload = function(event){
+                // set width and height
+                sanImg.style.width = sanImg.width - Math.floor(Math.random()*149) + "px";
+                sanImg.style.height = sanImg.height - Math.floor(Math.random()*149) + "px";
 
-            // TODO: make image spawn in the middle of cursor
+                // set position of image
+                sanImg.style.position = "absolute";
+                sanImg.style.left = xPos - sanImg.width/2 + "px";
+                sanImg.style.top = yPos - sanImg.height/2 + "px";
+                document.body.appendChild(sanImg);
+            };
 
-            // TODO: make it random sizes
-
-            // TODO: make it move randomly (direction n distance)
-
-            // TODO: make it not change the size/placement of other images, and fix the viewport smax width and height
+            // add audio
+            const luckySanVoice = Math.floor(Math.random()*9) + 1;
+            const sanVoicePath = 'sanvoices/' + luckySanVoice + '.mp3';
+            const theVoice = new Audio(sanVoicePath);
+            theVoice.play();
 
         }
+
+        // move the images around the page after clicking enter
+        function moveSans() {
+            
+        }
+
+
         document.addEventListener("click", spawnSans);
+        document.addEventListener("keydown", function(event){
+            if (event.key === "Enter"){
+                moveSans();
+            }
+        });
     </script>
     
 </body>
